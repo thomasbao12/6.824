@@ -49,6 +49,15 @@ func main() {
 		kva := mapf(filename, string(content))
 		intermediate = append(intermediate, kva...)
 	}
+    
+    // Output intermediate
+    n := 0
+    intermediateFile, _ := os.Create("mr-intermediate-0")
+    for n < len(intermediate) {
+        fmt.Fprintf(intermediateFile, "%v %v", intermediate[n].Key, intermediate[n].Value)
+        n = n + 1
+    }
+    intermediateFile.Close()
 
 	//
 	// a big difference from real MapReduce is that all the
